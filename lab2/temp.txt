@@ -1,0 +1,58 @@
+Biblioteka statyczna (archiwum)
+
+Pliki źródłowe -> format półskompilowane
+Tworzy dod.o i odej.o
+gcc -c dod.c -o dod.o
+gcc -c odej . c -o odej.o
+
+Stworzenie biblioteki statycznej poleceniem ar - archive
+Tworzy lib_atytm.a
+Nazwa pliku powinna zaczynać się od lib i mieć rozszerzenie .a
+Parametr r
+ar r lib_arytm.a dod.o odej.o
+
+Parametr tv
+ar tv lib_arytm.a
+
+
+Tworzy plik test_bibl.o
+gcc -c test_bibl.c -o test_bibl.o
+Tworzy plik wynik.out
+gcc test_bibl.o lib_arytm.a -o wynik.out
+
+Uruchomienie programu
+./ wynik . out
+
+
+Biblioteka dynamiczna (wspólna)
+
+Opcja -fPIC powoduje generowanie kodu przesuwneg
+Bez tej opcji trzeba by tworzyć odrębne kopie biblioteki dla każdego procesu
+gcc -c -Wall -fPIC -D_GNU_SOURCE dod.c
+gcc -c -Wall -fPIC -D_GNU_SOURCE odej.c
+
+Tworzy plik lib_arytmdyn.so
+Parametr -shared tworzy bibliotekę dynamiczną (wspólną)
+Nazwa pliku powinna zaczynać się od lib i mieć rozszerzenie .so
+gcc dod.o odej.o -shared -o lib_arytmdyn.so
+
+Kompilacja pliku test_bibldyn.c
+gcc -c test_bibldyn.c -o test_bibldyn.o
+
+Opcja -L wskazuje katalog, w którym linker szuka bibliotek statycznych i dynamicznych (wspólnych)
+gcc test_bibldyn.o -L. -l_arytmdyn -o test_bibldyn.out
+
+Sprawdzenie jakie biblioteki są używane
+ldd test_bibldyn.out
+
+Podanie położenia biblioteki - dodanie nazwy katalogu do ścieżek przeszukiwania
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:."
+
+Uruchomienie programu
+./test_bibldyn.out
+
+lib_arytm.a: 3 kB
+
+lib_arytmdyn.so: 15,3 kB
+
+test_bibldyn.out: 16 kB
