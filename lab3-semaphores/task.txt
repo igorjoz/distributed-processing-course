@@ -1,0 +1,14 @@
+Zmodyfikuj plik, żeby komunikacja między producentem i konsumentem zachodziła
+
+Jeden produkuje (producent), drugi konsumuje (konsument)
+
+Semafor - kiedy aktualizujemy listę
+Jeśli produkt się znajduje, to w odpowiedniej ilości (nie więcej niż jest towaru) trzeba go zdjąć z magazynu
+
+Program ma być wieloprocesowy
+
+Jak pokazać wielowątkowość?
+Na jednym wątku jest producent
+
+Na drugim wątku jest konsument; może być ich kilku
+

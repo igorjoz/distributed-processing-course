@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "pqueue.h": "c",
+        "semaphore.h": "c"
+    }
+}
